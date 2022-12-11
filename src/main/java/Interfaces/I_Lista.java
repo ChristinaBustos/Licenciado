@@ -1,11 +1,11 @@
 package Interfaces;
 
-public interface I_Lista<T>{
+public interface I_Lista{
     //Declaración de metodos
-    void add(T dato);
+    void add(Object dato);
     void remove(int index);
-    T get(int index);
-    int indexOf(T dato);
+    Object get(int index);
+    int indexOf(Object dato);
     void print();
     boolean isEmpty();
     void clear();

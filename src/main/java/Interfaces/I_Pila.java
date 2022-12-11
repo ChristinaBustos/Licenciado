@@ -1,9 +1,10 @@
 package Interfaces;
 
-public interface I_Pila<T>{
-    void push(T data);
+public interface I_Pila{
+    void push(Object data);
     void pop();
-    T peek();
+    Object peek();
     int lenght();
     boolean isEmpty();
+    void print();
 }

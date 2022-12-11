@@ -1,9 +1,10 @@
 package Interfaces;
 
-public interface I_Cola<T>{
-    void queue(T dato);
-    T dequeue();
+public interface I_Cola{
+    void queue(Object dato);
+    Object dequeue();
     int length();
     boolean isEmpty();
-    T peek();
+    Object peek();
+    void print();
 }
