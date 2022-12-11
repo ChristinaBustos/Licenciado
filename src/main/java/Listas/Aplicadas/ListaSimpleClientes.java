@@ -6,13 +6,16 @@ import Objetos.Hijos.Cliente;
 
 public class ListaSimpleClientes extends G_ListaSimple<Cliente> {
 
-    public boolean login(String email, String pass){
+    public Cliente login(String email, String pass){
         G_NodoSimple i = this.getCabeza();
+        Cliente aux = new Cliente();
         while (i != null){
             if(((Cliente)i.getDato()).getEmail().equals(email) && ((Cliente)i.getDato()).getPassword().equals(pass)){
-                return true;
+                aux = (Cliente)i.getDato();
+                return aux;
             }
+            i = i.getDer();
         }
-        return false;
+        return null;
     }
 }

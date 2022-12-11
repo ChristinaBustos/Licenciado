@@ -1,5 +1,6 @@
 package Objetos.Hijos;
 
+import Listas.Aplicadas.ListaDobleEmpleados;
 import Objetos.Padres.A_Usuario;
 
 public class Empleado extends A_Usuario {
@@ -14,9 +15,9 @@ public class Empleado extends A_Usuario {
     }
 
     @Override
-    public boolean crearCuenta(A_Usuario user, String secret) {
+    public boolean crearCuenta(Object user, String secret, Object lista) {
         if(secret.equals("Licenciado")){
-            //guardar User en lista de Admins
+            ((ListaDobleEmpleados)lista).add((Empleado)user);
             return true;
         }
         return false;

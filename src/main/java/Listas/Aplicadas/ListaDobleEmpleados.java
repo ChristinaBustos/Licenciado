@@ -6,13 +6,16 @@ import Objetos.Hijos.Empleado;
 
 public class ListaDobleEmpleados extends G_ListaDoble<Empleado> {
 
-    public boolean login(String email, String pass){
+    public Empleado login(String email, String pass){
         G_NodoDoble i = this.getCabeza();
+        Empleado aux = new Empleado();
         while (i != null){
             if(((Empleado)i.getDato()).getEmail().equals(email) && ((Empleado)i.getDato()).getPassword().equals(pass)){
-                return true;
+                aux = (Empleado) i.getDato();
+                return aux;
             }
+            i = i.getDer();
         }
-        return false;
+        return null;
     }
 }

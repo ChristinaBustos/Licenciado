@@ -1,5 +1,6 @@
 package Objetos.Hijos;
 
+import Listas.Aplicadas.ListaSimpleClientes;
 import Objetos.Otros.Ticket;
 import Objetos.Padres.A_Boleto;
 import Objetos.Padres.A_Usuario;
@@ -46,14 +47,14 @@ public class Cliente extends A_Usuario {
     @Override
     public void acciones() {
         System.out.println("- Comprar\n" +
-                "- Consultar Productos" +
+                "- Consultar Productos\n" +
                 "- Reservar");
     }
 
     @Override
-    public boolean crearCuenta(A_Usuario user, String Secret) {
-        //Solo hacer el add
-        return false;
+    public boolean crearCuenta(Object user, String Secret, Object lista) {
+        ((ListaSimpleClientes)lista).add((Cliente)user);
+        return true;
     }
 
     @Override

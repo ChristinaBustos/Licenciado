@@ -71,7 +71,7 @@ public abstract class A_Usuario {
 
     //No sé que otros métodos pueden ser Abstractos
     public abstract void acciones();
-    public abstract boolean crearCuenta(A_Usuario user, String Secret);
+    public abstract boolean crearCuenta(Object user, String Secret, Object lista);
     public abstract void mostrarRol();
 }
 
