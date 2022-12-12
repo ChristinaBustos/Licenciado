@@ -226,14 +226,17 @@ public class Restaurante {
                                     switch (opcB){
                                         case 1:
                                             loggedC.setBoleto(POBRE);
+                                            POBRE.vigencia();
                                             System.out.println("Boleto Pobre comprado");
                                             break;
                                         case 2:
                                             loggedC.setBoleto(NORMAL);
+                                            NORMAL.vigencia();
                                             System.out.println("Boleto Normal comprado");
                                             break;
                                         case 3:
                                             loggedC.setBoleto(PREMIUM);
+                                            PREMIUM.vigencia();
                                             System.out.println("Boleto Premium comprado");
                                             break;
                                         case 4:
@@ -283,7 +286,7 @@ public class Restaurante {
                         System.out.println("Bienvenido a la página del Restaurante \"El Licenciado\"");
                         System.out.println("Hola de nuevo, nuestro próximo empleado del mes " + loggedE.getNombre());
                         do{
-                            System.out.println("----------------MENÚ DE CLIENTE----------------");
+                            System.out.println("----------------MENÚ DE EMPLEADO----------------");
                             System.out.println("1.- Información de mi Cuenta\n" +
                                     "2.- Clientes\n" +
                                     "3.- Boletos\n" +
