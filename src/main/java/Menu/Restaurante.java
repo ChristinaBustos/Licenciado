@@ -197,7 +197,10 @@ public class Restaurante {
                                             historialVentas.add(ticket);
                                             loggedC.setTicket(ticket);
                                             System.out.println("Ticket registrado");
-                                            System.out.println("Total a pagar $" + loggedC.getBoleto().aplicarDescuento(total));
+                                            total = loggedC.getBoleto().aplicarDescuento(total);
+                                            System.out.println("Total a pagar $" + total);
+                                            System.out.println("Paga");
+                                            pagar(total, 0);
                                             historialVentas.print();
                                         }else{
                                             System.out.println("No se compro nada, el ticket no se registro");
@@ -278,7 +281,7 @@ public class Restaurante {
                     loggedE = empleados.login(email,password);
                     if (loggedE != null){
                         System.out.println("Bienvenido a la página del Restaurante \"El Licenciado\"");
-                        System.out.println("Hola de nuevo, nuestro próximo empleado del mes" + loggedE.getNombre());
+                        System.out.println("Hola de nuevo, nuestro próximo empleado del mes " + loggedE.getNombre());
                         do{
                             System.out.println("----------------MENÚ DE CLIENTE----------------");
                             System.out.println("1.- Información de mi Cuenta\n" +
@@ -636,42 +639,14 @@ public class Restaurante {
                             idCliente++;
                             Cliente nCliente = new Cliente();
                             nCliente.setId(idCliente);
-                            System.out.print("Nombre: ");
-                            nCliente.setNombre(s.next());
-                            System.out.print("Edad: ");
-                            nCliente.setEdad(s.nextInt());
-                            System.out.print("Correo: ");
-                            nCliente.setEmail(s.next());
-                            System.out.print("Contraseña: ");
-                            nCliente.setPassword(s.next());
-                            if (nCliente.crearCuenta(nCliente, "",clientes)){
-                                System.out.println("Cuenta de cliente craeda.");
-                                clientes.print();
-                            }else{
-                                System.out.println("Cuenta de Cliente no insertada");
-                            }
+                            creaciónCuentaCliente(nCliente, clientes);
                             break;
                         case 2:
                             System.out.println("#################CREAR CUENTA DE EMPLEADO#################");
                             idEmpleado++;
                             Empleado nEmpleado = new Empleado();
                             nEmpleado.setId(idEmpleado);
-                            System.out.print("Nombre: ");
-                            nEmpleado.setNombre(s.next());
-                            System.out.print("Edad: ");
-                            nEmpleado.setEdad(s.nextInt());
-                            System.out.print("Correo: ");
-                            nEmpleado.setEmail(s.next());
-                            System.out.print("Contraseña: ");
-                            nEmpleado.setPassword(s.next());
-                            System.out.print("Palabra secreata: ");
-                            secreta = s.next();
-                            if (nEmpleado.crearCuenta(nEmpleado, secreta,empleados)){
-                                System.out.println("Cuenta de Empleado craeda.");
-                                empleados.print();
-                            }else{
-                                System.out.println("Error en la palabra secreta\nCuenta de Empleado no insertada");
-                            }
+                            creacionCuentaEmpleado(nEmpleado, empleados);
                             break;
                         case 3:
                             System.out.println("Saliendo...");
@@ -689,5 +664,63 @@ public class Restaurante {
                     break;
             }
         }while(opcM!=4);
+    }
+
+    public static void creaciónCuentaCliente(Cliente c, ListaSimpleClientes listC){
+        try {
+            System.out.print("Nombre: ");
+            c.setNombre(s.next());
+            System.out.print("Edad: ");
+            c.setEdad(s.nextInt());
+            System.out.print("Correo: ");
+            c.setEmail(s.next());
+            System.out.print("Contraseña: ");
+            c.setPassword(s.next());
+            if (c.crearCuenta(c, "",listC)){
+                System.out.println("Cuenta de cliente craeda.");
+                listC.print();
+            }else{
+                System.out.println("Cuenta de Cliente no insertada");
+            }
+        }catch (Exception e){
+            System.out.println("Cometiste un error, reintenta.");
+            creaciónCuentaCliente(c, listC);
+        }
+    }
+
+    public static void creacionCuentaEmpleado(Empleado e, ListaDobleEmpleados listE){
+        try {
+            System.out.print("Nombre: ");
+            e.setNombre(s.next());
+            System.out.print("Edad: ");
+            e.setEdad(s.nextInt());
+            System.out.print("Correo: ");
+            e.setEmail(s.next());
+            System.out.print("Contraseña: ");
+            e.setPassword(s.next());
+            System.out.print("Palabra secreata: ");
+            String secreta = s.next();
+            if (e.crearCuenta(e, secreta,listE)){
+                System.out.println("Cuenta de Empleado craeda.");
+                listE.print();
+            }else{
+                System.out.println("Error en la palabra secreta\nCuenta de Empleado no insertada");
+            }
+        }catch (Exception ex){
+            System.out.println("Cometiste un error, reintenta.");
+            creacionCuentaEmpleado(e, listE);
+        }
+    }
+
+    public static void pagar(double total, double acumulado){
+        double suma = 0;
+        if (acumulado >= total) {
+            System.out.println("Ticket pagado");
+        }else{
+            System.out.println("Acumulado: $" + acumulado);
+            System.out.print("Monto a agregar: $");
+            suma = s.nextDouble();
+            pagar(total, (acumulado + suma));
+        }
     }
 }
