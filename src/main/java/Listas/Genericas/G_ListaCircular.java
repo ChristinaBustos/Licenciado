@@ -114,12 +114,14 @@ public class G_ListaCircular<T> implements I_Lista {
     public void print() {
         G_NodoSimple actual = this.cabeza;
         int cont = 1;
-        while (actual != this.cabeza) {
+        while (actual.getDer() != this.cabeza) {
             System.out.println("Nodo " + cont);
             System.out.println(actual + ",der: " + actual.getDer());
             actual = actual.getDer();
             cont++;
         }
+        System.out.println("Nodo " + cont);
+        System.out.println(actual + ",der: " + actual.getDer());
     }
 
     @Override

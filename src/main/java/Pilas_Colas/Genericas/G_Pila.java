@@ -81,7 +81,7 @@ public class G_Pila<T> implements I_Pila {
                 i = i.getDer();
             }
         }else{
-            System.out.println("Cola vacía.");
+            System.out.println("Pila vacía.");
         }
     }
 

@@ -50,7 +50,7 @@ public class G_Cola<T> implements I_Cola {
         }else{
             System.out.println("Cola vacia");
         }
-        return aux;
+        return aux.getDato();
     }
 
     @Override
